@@ -12,14 +12,14 @@ import java.util.List;
 @CrossOrigin(origins="http://localhost:3000")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/")
+@RequestMapping("/home")
 @Slf4j
 public class HomeController {
     private final DiaryDao diaryDao;
 
     // 해당 회원이 일기 전체 조회
     @GetMapping("/{memberNum}")
-    public ResponseEntity<List<DiaryVo>> diaryListByMember(@PathVariable String memberNum) {
+    public ResponseEntity<List<DiaryVo>> diaryListByMember(@PathVariable int memberNum) {
         List<DiaryVo> list = diaryDao.diaryListByMember(memberNum);
         return ResponseEntity.ok(list);
     }

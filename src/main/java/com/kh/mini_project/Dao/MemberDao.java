@@ -35,4 +35,10 @@ public class MemberDao {
         Integer count = jdbcTemplate.queryForObject(SELECT_COUNT_BY_ID_AND_PASSWORD_QUERY, new Object[]{id, password}, Integer.class);
         return count == null ? 0 : count;
     }
+
+    public String getUserIdByMemberNum(int memberNum) {
+        String sql = "SELECT id FROM MEMBER WHERE member_num = ?";
+        String userId = jdbcTemplate.queryForObject(sql, new Object[]{memberNum}, String.class);
+        return userId;
+    }
 }
