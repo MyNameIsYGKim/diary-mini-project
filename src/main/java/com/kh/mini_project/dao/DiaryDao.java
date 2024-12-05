@@ -59,4 +59,16 @@ public class DiaryDao {
         }
 
     }
+
+    public static final String SELECT_ALL_DIARY = "SELECT * FROM diary WHERE member_num = ?";
+
+    // 해당 회원이 일기 전체 조회
+    public List<DiaryVo> diaryListByMember(int memberNum) {
+        try {
+            return jdbcTemplate.query((SELECT_ALL_DIARY), new Object[]{memberNum}, new DiaryRowMapper());
+        } catch (DataAccessException e) {
+            log.error("다이어리 조회 중 에러 발생. ", e);
+            throw e;
+        }
+    }
 }
